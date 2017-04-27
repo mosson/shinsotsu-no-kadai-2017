@@ -1,0 +1,26 @@
+{
+  "name": "shinsotsu-no-kadai-2017",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mosson",
+  "license": "MIT",
+  "dependencies": {
+    "@types/lodash": "^4.14.63",
+    "@types/react": "^15.0.23",
+    "@types/react-dom": "^15.5.0",
+    "lodash": "^4.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.2.2",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}
