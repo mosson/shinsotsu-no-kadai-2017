@@ -9,8 +9,13 @@ module.exports = {
 
   devtool: 'source-map',
 
+  devServer: {
+    contentBase: 'dist',
+    port: 8000
+  },
+
   resolve: {
-    extensions: ['ts', 'tsx', 'js', 'json']
+    extensions: ['.ts', '.tsx', '.js', '.json']
   },
 
   module: {
