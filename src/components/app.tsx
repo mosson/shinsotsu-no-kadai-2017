@@ -7,6 +7,7 @@ import Model from '../models/model';
 
 import Viewer from './viewer';
 import Controller from './controller';
+import Elapsed from './elapsed';
 
 export interface AppProps {
   srces: string[]; // srcs includes src of the images
@@ -61,6 +62,7 @@ class App extends React.Component<AppProps, AppState> {
               onChange={this.toggle.bind(this)} />
             &nbsp; automode
           </label>
+          <Elapsed automode={this.state.model.automode} interval={this.state.model.intervalDuration} startAt={this.state.model.changedAt}/>
         </div>
       </div>
     );

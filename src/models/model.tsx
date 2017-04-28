@@ -8,6 +8,7 @@ class Model extends EventEmitter2 {
   private _index: number;
   private _timer: TimerClearer;
   private _automode: boolean; // automode indicates activating slide show.
+  private _changedAt: number; // index changed at duration
 
   intervalDuration: number; // intervalDuration is next tick duration in automode.
 
@@ -21,7 +22,7 @@ class Model extends EventEmitter2 {
   }
 
   update(index: number): number {
-    clearTimeout(this._timer);
+    this.clearTimer();
     this.setIndex(index);
     return this._index;
   }
@@ -46,6 +47,13 @@ class Model extends EventEmitter2 {
 
   toggleAuto() {
     this._automode = !this._automode;
+    
+    if(this._automode) {
+      this.setTimer();
+    } else {
+      this.clearTimer();
+    }
+
     this.emit('updated');
   }
 
@@ -56,8 +64,17 @@ class Model extends EventEmitter2 {
 
   private setIndex(v: number): void {
     this._index = v;
-    this._timer = this.setTimeout(this.tick.bind(this), this.intervalDuration);
+    this.setTimer();
     this.emit('updated');
+  }
+
+  private setTimer(): void {
+    this._timer = this.setTimeout(this.tick.bind(this), this.intervalDuration);
+    this._changedAt = new Date().getTime();
+  }
+
+  private clearTimer(): void {
+    clearTimeout(this._timer);
   }
 
   private setTimeout(handler: any, timeout?: any, ...args: any[]): TimerClearer {
@@ -70,6 +87,10 @@ class Model extends EventEmitter2 {
 
   get automode(): boolean {
     return this._automode;
+  }
+
+  get changedAt(): number {
+    return this._changedAt;
   }
 }
 
