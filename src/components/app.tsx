@@ -54,6 +54,14 @@ class App extends React.Component<AppProps, AppState> {
           </button>
         </div>
         <Controller srces={this.props.srces} index={this.state.model.index} update={this.update.bind(this)} />
+        <div>
+          <label>
+            <input type="checkbox"
+              checked={this.state.model.automode}
+              onChange={this.toggle.bind(this)} />
+            &nbsp; automode
+          </label>
+        </div>
       </div>
     );
   }
@@ -74,6 +82,10 @@ class App extends React.Component<AppProps, AppState> {
 
   back(): void {
     this.state.model.back();
+  }
+
+  toggle(): void {
+    this.state.model.toggleAuto();
   }
 
 }
