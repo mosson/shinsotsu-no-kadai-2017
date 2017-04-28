@@ -17,12 +17,24 @@ export interface AppState {
 }
 
 class App extends React.Component<AppProps, AppState> {
+  _bindedSync: () => void;
+
   constructor(props: AppProps, state: AppState) {
     super(props);
 
     this.state = {
       model: new Model(this.props.srces)
     };
+
+    this._bindedSync = this.sync.bind(this);
+  }
+
+  componentWillMount() {
+    this.state.model.addListener('updated', this._bindedSync);
+  }
+
+  componentWillUnmount() {
+    this.state.model.removeListener('updated', this._bindedSync);
   }
 
   render() {
@@ -46,7 +58,7 @@ class App extends React.Component<AppProps, AppState> {
     );
   }
 
-  sync() {
+  sync(): void {
     this.setState({
       model: this.state.model
     });
@@ -54,17 +66,14 @@ class App extends React.Component<AppProps, AppState> {
 
   update(index: number): void {
     this.state.model.update(index);
-    this.sync();
   }
 
   next(): void {
     this.state.model.next();
-    this.sync();
   }
 
   back(): void {
     this.state.model.back();
-    this.sync();
   }
 
 }
