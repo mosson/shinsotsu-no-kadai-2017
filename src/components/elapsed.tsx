@@ -46,8 +46,6 @@ class Elapsed extends React.Component<ElapsedProps, ElapsedState> {
       transform: `scale(${this.state.started ? '1' : '0'}, 1)`
     };
 
-    console.log(this.state.started);
-
     return (
       <div className={css(styles.container)}>
         <div className={css(styles.bar)} style={style}></div>
