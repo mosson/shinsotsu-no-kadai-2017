@@ -12,11 +12,13 @@
   "license": "MIT",
   "dependencies": {
     "@types/aphrodite": "^0.5.5",
+    "@types/eventemitter2": "^2.2.1",
     "@types/lodash": "^4.14.63",
     "@types/object-assign": "^4.0.30",
     "@types/react": "^15.0.23",
     "@types/react-dom": "^15.5.0",
     "aphrodite": "^1.2.0",
+    "eventemitter2": "^4.1.0",
     "lodash": "^4.17.4",
     "object-assign": "^4.1.1",
     "react": "^15.5.4",
