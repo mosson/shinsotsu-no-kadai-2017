@@ -42,12 +42,12 @@ class App extends React.Component<AppProps, AppState> {
     return (
       <div className={css(styles['container'])}>
         <div className={css(styles['viewer-container'])}>
+          <Viewer srces={this.props.srces} index={this.state.model.index} />
           <button type="button"
             onClick={this.back.bind(this)}
             className={css(styles['back-button'])}>
             &lt;
           </button>
-          <Viewer srces={this.props.srces} index={this.state.model.index} />
           <button type="button"
             onClick={this.next.bind(this)}
             className={css(styles['next-button'])}>
