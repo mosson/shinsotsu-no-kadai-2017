@@ -1,35 +1,8 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 
-import { StyleSheet, css } from 'aphrodite';
-
-const styles = StyleSheet.create({
-  'viewer': {
-    'display': 'block',
-    'maxWidth': 600,
-    'margin': '0 auto'
-  },
-  'list': {
-    'display': 'block',
-    'margin': 0,
-    'padding': 0,
-    'fontSize': 0,
-    'overflow': 'hidden',
-    'whiteSpace': 'nowrap',
-    'wordWrap': 'keep-all'
-  },
-  'item': {
-    'display': 'inline-block',
-    'width': '100%',
-    'transition': 'margin-left 0.6s ease-in-out'
-  },
-  image: {
-    'display': 'block',
-    'margin': '0 auto',
-    'height': '100%',
-    'width': 'auto'
-  }
-});
+import { css } from 'aphrodite';
+import styles from './viewer-style';
 
 export interface ViewerProps {
   srces: string[]; // srcs includes src of the images
@@ -39,7 +12,7 @@ export interface ViewerProps {
 class Viewer extends React.Component<ViewerProps, {}> {
   render() {
     return (
-      <div className={css(styles.viewer)}>
+      <div>
         <ul className={css(styles.list)}>
           {this._resolveItems()}
         </ul>
