@@ -13,7 +13,7 @@ export interface ElapsedProps {
 }
 
 export interface ElapsedState {
-  duration: Duration;
+  started: Boolean;
 }
 
 class Elapsed extends React.Component<ElapsedProps, ElapsedState> {
@@ -26,23 +26,27 @@ class Elapsed extends React.Component<ElapsedProps, ElapsedState> {
     this._canceled = false;
 
     this.state = {
-      duration: 0
+      started: false
     };
   }
 
-  componentWillMount() {
-    this._cancel = requestAnimationFrame(this._tick.bind(this))
+  componentDidMount() {
+    this.reset();
   }
 
-  componentWillUnmount() {
-    this._canceled = true;
-    cancelAnimationFrame(this._cancel);
+  componentWillReceiveProps(nextProps: ElapsedProps) {
+    if (nextProps.startAt !== this.props.startAt) {
+      this.reset();
+    }
   }
 
   render() {
     const style = {
-      transform: `scale(${this.props.automode ? this.per : 0}, 1)`
+      transition: `transform ${this.state.started ? this.props.interval / 1000 : 0}s linear`,
+      transform: `scale(${this.state.started ? '1' : '0'}, 1)`
     };
+
+    console.log(this.state.started);
 
     return (
       <div className={css(styles.container)}>
@@ -51,22 +55,16 @@ class Elapsed extends React.Component<ElapsedProps, ElapsedState> {
     );
   }
 
-  private _tick() {
+  private reset() {
     this.setState({
-      duration: this.now - this.props.startAt
+      started: false
     });
 
-    if (!this._canceled) {
-      this._cancel = requestAnimationFrame(this._tick.bind(this))
-    }
-  }
-
-  private get now(): Duration {
-    return new Date().getTime();
-  }
-
-  private get per(): number {
-    return Math.min(1, Math.max(0, this.state.duration / this.props.interval));
+    requestAnimationFrame(() => {
+      this.setState({
+        started: true
+      })
+    });
   }
 }
 
