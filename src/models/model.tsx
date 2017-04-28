@@ -1,27 +1,31 @@
 class Model {
   readonly srces: string[];
-  index: number;
+  private _index: number;
 
   constructor(srces: string[]) {
     this.srces = srces;
-    this.index = 0;
+    this._index = 0;
   }
 
   update(index: number): number {
-    this.index = index;
-    return this.index;
+    this._index = index;
+    return this._index;
   }
 
   next(): number {
-    ++this.index;
-    if (this.index >= this.srces.length) this.index = 0;
-    return this.index;
+    ++this._index;
+    if (this._index >= this.srces.length) this._index = 0;
+    return this._index;
   }
 
   back(): number {
-    --this.index;
-    if (this.index < 0) this.index = this.srces.length - 1;
-    return this.index;
+    --this._index;
+    if (this._index < 0) this._index = this.srces.length - 1;
+    return this._index;
+  }
+
+  get index(): number {
+    return this._index;
   }
 }
 
