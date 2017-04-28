@@ -8,7 +8,7 @@ class Model extends EventEmitter2 {
     super(conf);
 
     this.srces = srces;
-    this._index = 0;
+    this.setIndex(0);
   }
 
   update(index: number): number {
@@ -18,18 +18,18 @@ class Model extends EventEmitter2 {
 
   next(): number {
     if (this._index + 1 >= this.srces.length) {
-      this.setIndex(0);
+      this.update(0);
     } else {
-      this.setIndex(this._index + 1);
+      this.update(this._index + 1);
     }
     return this._index;
   }
 
   back(): number {
     if (this._index - 1 < 0) {
-      this.setIndex(this.srces.length - 1);
+      this.update(this.srces.length - 1)
     } else {
-      this.setIndex(this._index - 1);
+      this.update(this._index - 1);
     }
     return this._index;
   }
