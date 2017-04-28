@@ -62,7 +62,13 @@ class App extends React.Component<AppProps, AppState> {
               onChange={this.toggle.bind(this)} />
             &nbsp; automode
           </label>
-          <Elapsed automode={this.state.model.automode} interval={this.state.model.intervalDuration} startAt={this.state.model.changedAt}/>
+          <Elapsed automode={this.state.model.automode} interval={this.state.model.intervalDuration} startAt={this.state.model.changedAt} />
+        </div>
+        <div>
+          <input type="number"
+            onChange={this.change.bind(this)}
+            defaultValue={this.state.model.intervalDuration.toString()} />
+            &nbsp; interval
         </div>
       </div>
     );
@@ -88,6 +94,10 @@ class App extends React.Component<AppProps, AppState> {
 
   toggle(): void {
     this.state.model.toggleAuto();
+  }
+
+  change(e: Event): void {
+    this.state.model.changeInterval(parseFloat((e.currentTarget as HTMLInputElement).value));
   }
 
 }

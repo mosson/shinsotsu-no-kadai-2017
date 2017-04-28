@@ -57,6 +57,11 @@ class Model extends EventEmitter2 {
     this.emit('updated');
   }
 
+  changeInterval(v: number) {
+    this.intervalDuration = v;
+    this.emit('updated');
+  }
+
   private tick(): void {
     if (!this._automode) return;
     this.next();
