@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   'item': {
     'display': 'inline-block',
     'width': '100%',
-    'transition': 'margin-left 0.6s ease-in-out'
+    'transition': 'transform 0.6s ease-in-out'
   },
   image: {
     'display': 'block',

@@ -23,8 +23,9 @@ class Viewer extends React.Component<ViewerProps, {}> {
   _resolveItems() {
     return _.map(this.props.srces, (src, index) => {
       const style = {
-        marginLeft: index == 0 ? `${-100 * this.props.index}%` : 'auto'
+        'transform': `translate(${-100 * this.props.index}%)`
       };
+      
       return (
         <li key={index} className={css(styles.item)} style={style}>
           <img className={css(styles.image)} src={src} alt={index.toString()}/>
